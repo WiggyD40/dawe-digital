@@ -1,0 +1,40 @@
+/* Shared styles ported from the design canvas (Option B · Feed Rush + Blog boards). */
+html { background: #000; color-scheme: dark; }
+body { margin: 0; background: #000; color: #FDFCF9; font-family: 'Inter', system-ui, sans-serif; overflow-x: clip; }
+img { max-width: 100%; }
+::selection { background: #FF0088; color: #000; }
+a { color: #FDFCF9; text-underline-offset: 6px; }
+a:hover { color: #FF0088; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px solid #DDB866; outline-offset: 3px; }
+.on-pink :focus-visible, .paper :focus-visible { outline-color: #000; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: 16px; top: -100px; z-index: 10; background: #FF0088; color: #000; font-weight: 800; padding: 12px 18px; border-radius: 999px; text-decoration: none; }
+.skip:focus { top: 12px; color: #000; }
+
+.wrap { max-width: 1440px; margin: 0 auto; padding-left: clamp(16px, 4vw, 48px); padding-right: clamp(16px, 4vw, 48px); box-sizing: border-box; }
+.display { font-family: 'Anton', Impact, sans-serif; font-weight: 400; text-transform: uppercase; }
+.kicker { margin: 0; font: 700 13px/1 'Inter', system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #DDB866; }
+
+.logo img { display: block; width: clamp(144px, 14vw, 200px); height: auto; }
+.navlink { text-decoration: none; padding: 12px 2px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; }
+.navlink[aria-current="page"] { box-shadow: inset 0 -3px 0 #FF0088; }
+
+.pill { text-decoration: none; font-weight: 800; border-radius: 999px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 10px; transition: transform .15s ease-out; }
+.pill:active { transform: scale(.97); }
+.pill-pink { background: #FF0088; color: #000; }
+a.pill-pink:hover { color: #000; }
+.pill-line { border: 2px solid #FDFCF9; color: #FDFCF9; }
+a.pill-line:hover { color: #FDFCF9; border-color: #FF0088; }
+
+.ribbon { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
+.swoosh { width: min(600px, 80%); height: auto; display: block; }
+/* Footer on the homepage: live ribbon normally, static swoosh under reduced motion. */
+.swoosh-rm { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .pill:hover { transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pill { transition: none; }
+  .swoosh-rm { display: block; }
+}
