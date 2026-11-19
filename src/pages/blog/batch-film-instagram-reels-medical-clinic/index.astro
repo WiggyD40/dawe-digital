@@ -1,10 +1,39 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import { site, ids, article } from '../../../data/site';
+
+const url = `${site.url}${article.path}`;
+const jsonld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    dateModified: article.date,
+    url,
+    mainEntityOfPage: url,
+    image: `${site.url}/og.png`,
+    author: { '@type': 'Person', '@id': ids.person, name: 'Wyatt Dawe', url: `${site.url}/about/` },
+    publisher: { '@type': 'Organization', '@id': ids.business, name: site.name, logo: { '@type': 'ImageObject', url: `${site.url}/og.png` } },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${site.url}/blog/` },
+      { '@type': 'ListItem', position: 3, name: article.title, item: url },
+    ],
+  },
+];
 ---
 <Base
-  title="How to Batch-Film Instagram Reels for a Medical Clinic · Dawe Digital"
-  description="How medical clinics can prepare, organize, and batch-film Instagram Reels that are educational and engaging, without disrupting busy providers."
+  title={`${article.title} · Dawe Digital`}
+  description={article.description}
   current="blog"
+  ogType="article"
+  jsonld={jsonld}
   footerTitle="Planning Reels for your clinic?"
   backToBlog
 >
@@ -18,9 +47,9 @@ import Base from '../../../layouts/Base.astro';
   </nav>
   <h1 id="art-h" style="margin: 0; max-width: 15ch; font-family: 'Anton', Impact, sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(52px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; text-wrap: balance">How to Batch-Film Instagram Reels <span style="color: #FF0088">for a Medical Clinic</span></h1>
   <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; font-size: 15px; color: #D7D7D5">
-    <span style="display: inline-flex; align-items: center; gap: 12px"><span role="img" aria-label="Placeholder for Wyatt's portrait" style="width: 40px; height: 40px; border-radius: 50%; background: #D7D7D5; outline: 2px solid #FF0088; outline-offset: 2px"></span><span>By <strong style="color: #FDFCF9">Wyatt Dawe</strong></span></span>
+    <span>By <a href="/about/" style="color: #FDFCF9; font-weight: 700">Wyatt Dawe</a></span>
     <span aria-hidden="true" style="color: #DDB866">·</span>
-    <span>[PUBLISH DATE]</span>
+    <time datetime={article.date}>{article.dateLabel}</time>
     <span aria-hidden="true" style="color: #DDB866">·</span>
     <span>6 min read</span>
     <span style="background: #FDFCF9; color: #000; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 11px; border-radius: 999px">Healthcare</span>
@@ -33,8 +62,8 @@ import Base from '../../../layouts/Base.astro';
 
     <p style="font-size: 23px; line-height: 1.55; font-weight: 500; letter-spacing: -0.005em">Creating Instagram Reels for a medical clinic can be challenging, especially when your providers are busy seeing patients throughout the day. Between planning content, filming, editing, and publishing, it can become overwhelming trying to keep up with everything.</p>
     <p>One way to make this process easier is through <strong>batch filming</strong>, which essentially means recording multiple videos during one scheduled filming session rather than trying to film something new every single day.</p>
-    <p>I’ve found that having a plan before filming makes a significant difference, especially when working around busy medical professionals.</p>
-    <p>In this article, I’ll walk through how medical clinics can prepare, organize, and batch-film Instagram Reels while creating content that’s both educational and engaging for their audience.</p>
+    <p>I've found that having a plan before filming makes a significant difference, especially when working around busy medical professionals.</p>
+    <p>In this article, I'll walk through how medical clinics can prepare, organize, and batch-film Instagram Reels while creating content that's both educational and engaging for their audience.</p>
 
     <nav class="toc" aria-label="Steps" style="margin: 48px 0 0; padding: 28px 0 0; border-top: 2px solid #000">
       <p style="margin: 0 0 12px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase">In this article</p>
@@ -50,7 +79,7 @@ import Base from '../../../layouts/Base.astro';
     </nav>
 
     <h2 id="step-1" class="step"><span class="step-num">1</span><span class="step-title">Understand Your Target Audience</span></h2>
-    <p>Before you even pick up a camera, one of the most important things you can do is understand who you’re trying to reach.</p>
+    <p>Before you even pick up a camera, one of the most important things you can do is understand who you're trying to reach.</p>
     <p>For medical clinics, your audience might include people researching a particular treatment, trying to understand their symptoms, or looking for a healthcare provider they can trust.</p>
     <p>A good way to come up with content ideas is to think about the questions your patients are already asking.</p>
     <p>For example:</p>
@@ -62,20 +91,20 @@ import Base from '../../../layouts/Base.astro';
       <li>How do I know which treatment options might be appropriate for me?</li>
     </ul>
     <p>Each of these questions could become an individual Instagram Reel.</p>
-    <p>Instead of constantly trying to come up with brand-new ideas, you’re creating content around questions people are genuinely interested in learning more about.</p>
+    <p>Instead of constantly trying to come up with brand-new ideas, you're creating content around questions people are genuinely interested in learning more about.</p>
 
     <h2 id="step-2" class="step"><span class="step-num">2</span><span class="step-title">Create a Content Plan Before Filming</span></h2>
     <p>One thing I would recommend is having your topics prepared before asking your providers to get in front of the camera.</p>
     <p>Medical professionals are busy, and the last thing you want is to spend most of your filming session figuring out what everyone should talk about.</p>
     <p>For each Reel, I would prepare a simple outline with three main parts:</p>
     <div class="outline">
-      <div><h3>The Hook</h3><p>Start with a question or statement that catches someone’s attention.</p></div>
-      <div><h3>The Main Content</h3><p>Have the provider answer the question or explain the topic in a way that’s easy to understand.</p></div>
-      <div><h3>The Call to Action</h3><p>Give viewers an appropriate next step, such as visiting the clinic’s website to learn more or scheduling a consultation.</p></div>
+      <div><h3>The Hook:</h3><p>Start with a question or statement that catches someone's attention.</p></div>
+      <div><h3>The Main Content:</h3><p>Have the provider answer the question or explain the topic in a way that's easy to understand.</p></div>
+      <div><h3>The Call to Action:</h3><p>Give viewers an appropriate next step, such as visiting the clinic's website to learn more or scheduling a consultation.</p></div>
     </div>
-    <p>For example, if you’re creating a Reel about physical therapy, your hook could be:</p>
+    <p>For example, if you're creating a Reel about physical therapy, your hook could be:</p>
     <figure style="margin: 8px 0 1.6em; padding: clamp(24px, 3vw, 36px); background: #000; border-radius: 20px; display: grid; gap: 16px">
-      <blockquote style="margin: 0"><p style="margin: 0; display: inline; background: #DDB866; color: #000; font-weight: 700; font-size: clamp(24px, 2.4vw, 30px); line-height: 1.5; letter-spacing: -0.01em; padding: 3px 10px; -webkit-box-decoration-break: clone; box-decoration-break: clone">“Have you ever wondered what actually happens during your first physical therapy appointment?”</p></blockquote>
+      <blockquote style="margin: 0"><p style="margin: 0; display: inline; background: #DDB866; color: #000; font-weight: 700; font-size: clamp(24px, 2.4vw, 30px); line-height: 1.5; letter-spacing: -0.01em; padding: 3px 10px; -webkit-box-decoration-break: clone; box-decoration-break: clone">"Have you ever wondered what actually happens during your first physical therapy appointment?"</p></blockquote>
     </figure>
     <p>The provider could then walk through what patients should generally expect, address common concerns, and explain where viewers can learn more about the clinic.</p>
     <p>The goal is to make the information helpful without making it unnecessarily complicated.</p>
@@ -83,7 +112,7 @@ import Base from '../../../layouts/Base.astro';
     <h2 id="step-3" class="step"><span class="step-num">3</span><span class="step-title">Schedule a Dedicated Filming Session</span></h2>
     <p>Once you have your content planned, the next step is scheduling time with your providers.</p>
     <p>Instead of filming one Reel every day, consider setting aside approximately one hour to record several videos.</p>
-    <p>Here’s an example of how you could organize that time:</p>
+    <p>Here's an example of how you could organize that time:</p>
     <div style="overflow-x: auto; margin: 8px 0 1.6em">
       <table class="sched">
         <caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap">Example one-hour filming session</caption>
@@ -97,29 +126,29 @@ import Base from '../../../layouts/Base.astro';
       </table>
     </div>
     <p>This schedule is just an example. Some providers might need more time, while others may be comfortable filming multiple videos in a shorter session.</p>
-    <p>I think the most important thing is having a plan that respects everyone’s schedule while still allowing you to create quality content.</p>
+    <p>I think the most important thing is having a plan that respects everyone's schedule while still allowing you to create quality content.</p>
 
     <h2 id="step-4" class="step"><span class="step-num">4</span><span class="step-title">Keep Your Filming Setup Simple</span></h2>
-    <p>You don’t necessarily need thousands of dollars in camera equipment to create professional-looking Instagram Reels.</p>
+    <p>You don't necessarily need thousands of dollars in camera equipment to create professional-looking Instagram Reels.</p>
     <p>A modern smartphone, tripod, and decent microphone can be enough to get started.</p>
     <p>However, there are a few things I would pay special attention to.</p>
     <div class="setup">
-      <div><h3>Lighting</h3><p>Make sure your provider is properly lit and their face is clearly visible. Poor lighting can make even an expensive camera look bad.</p></div>
-      <div><h3>Audio</h3><p>Record in a quiet environment whenever possible. I would also recommend using a microphone because clear audio is especially important when someone is explaining medical information.</p></div>
-      <div><h3>Framing</h3><p>Film vertically for Instagram Reels and make sure your provider is positioned comfortably within the frame.</p></div>
-      <div><h3>Background</h3><p>Choose a clean, professional setting that represents the clinic without creating unnecessary distractions.</p></div>
+      <div><h3>Lighting:</h3><p>Make sure your provider is properly lit and their face is clearly visible. Poor lighting can make even an expensive camera look bad.</p></div>
+      <div><h3>Audio:</h3><p>Record in a quiet environment whenever possible. I would also recommend using a microphone because clear audio is especially important when someone is explaining medical information.</p></div>
+      <div><h3>Framing:</h3><p>Film vertically for Instagram Reels and make sure your provider is positioned comfortably within the frame.</p></div>
+      <div><h3>Background:</h3><p>Choose a clean, professional setting that represents the clinic without creating unnecessary distractions.</p></div>
     </div>
-    <p>One thing I’ve learned about video production is that having the most expensive camera doesn’t automatically mean you’re going to produce the best video. Understanding lighting, audio, and composition can make a huge difference.</p>
+    <p>One thing I've learned about video production is that having the most expensive camera doesn't automatically mean you're going to produce the best video. Understanding lighting, audio, and composition can make a huge difference.</p>
 
     <h2 id="step-5" class="step"><span class="step-num">5</span><span class="step-title">Record Multiple Videos While Everything Is Set Up</span></h2>
     <p>Now comes the actual batch-filming process.</p>
     <p>Once your camera, lighting, and microphone are ready, try to record multiple videos before taking everything down.</p>
     <p>I would prioritize filming educational content with providers first, since their schedules are usually the hardest to work around.</p>
-    <p>If someone makes a mistake while speaking, don’t worry about restarting the entire video. Have them repeat the sentence or section so you can make the correction during editing.</p>
+    <p>If someone makes a mistake while speaking, don't worry about restarting the entire video. Have them repeat the sentence or section so you can make the correction during editing.</p>
     <p>After recording the educational content, you can start capturing additional footage, also known as <em>B-roll</em>.</p>
     <p>This might include:</p>
     <ul class="list">
-      <li>Footage of the clinic’s interior</li>
+      <li>Footage of the clinic's interior</li>
       <li>Providers preparing equipment</li>
       <li>Close-up shots of treatment equipment</li>
       <li>Staff working together</li>
@@ -137,11 +166,11 @@ import Base from '../../../layouts/Base.astro';
     <p>One approach is to create a separate folder for each Reel. That way, you can easily find the talking-head footage, B-roll, and audio recordings associated with each video.</p>
     <p>When editing, I would focus on keeping the content clear and engaging.</p>
     <p>Remove unnecessary pauses, add captions where appropriate, and use B-roll to support what the provider is explaining.</p>
-    <p>You also want to make sure the information is understandable to someone who doesn’t have a medical background.</p>
-    <p>After editing, review each Reel for accuracy and make sure it goes through your clinic’s approval process before publishing.</p>
+    <p>You also want to make sure the information is understandable to someone who doesn't have a medical background.</p>
+    <p>After editing, review each Reel for accuracy and make sure it goes through your clinic's approval process before publishing.</p>
 
     <h2 id="step-7" class="step"><span class="step-num">7</span><span class="step-title">Review Your Results and Improve</span></h2>
-    <p>After publishing your Reels, your job isn’t finished.</p>
+    <p>After publishing your Reels, your job isn't finished.</p>
     <p>Take some time to review how the content performs.</p>
     <p>Some metrics worth monitoring include:</p>
     <ul class="list">
@@ -154,7 +183,7 @@ import Base from '../../../layouts/Base.astro';
     <p>For example, if a Reel answering a common patient question receives more saves and shares than your other videos, that might indicate your audience finds the information useful.</p>
     <p>You could then create additional content around similar questions.</p>
     <p>I think this is where understanding your target audience becomes especially important.</p>
-    <p>The goal isn’t just to create as many videos as possible. It’s to figure out what your audience finds valuable and continue improving your content.</p>
+    <p>The goal isn't just to create as many videos as possible. It's to figure out what your audience finds valuable and continue improving your content.</p>
   </div>
 </article>
 
@@ -164,14 +193,16 @@ import Base from '../../../layouts/Base.astro';
     <p style="margin: 0 0 1.15em">Batch filming can be a useful way for medical clinics to create consistent social media content without constantly interrupting their daily schedules.</p>
     <p style="margin: 0 0 1.15em">By understanding your audience, preparing topics ahead of time, organizing your equipment, and having a clear filming process, you can make content production much more manageable.</p>
     <p style="margin: 0 0 1.15em">Something I believe is especially important in medical marketing is remembering that your content should provide value to the people watching it.</p>
-    <p style="margin: 0; color: #FDFCF9; font-weight: 500">At the end of the day, you want your audience to walk away with a better understanding of your services, answers to their questions, and a reason to trust the information you’re sharing.</p>
+    <p style="margin: 0; color: #FDFCF9; font-weight: 500">At the end of the day, you want your audience to walk away with a better understanding of your services, answers to their questions, and a reason to trust the information you're sharing.</p>
 
-    <div style="margin-top: 56px; padding-top: 32px; border-top: 2px solid #DDB866; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 24px">
-      <div role="img" aria-label="Placeholder for Wyatt's portrait" style="flex: 0 0 auto; width: 88px; height: 88px; border-radius: 50%; background: #D7D7D5; color: #000; display: grid; place-items: center; font-size: 11px; font-weight: 600; outline: 3px solid #FF0088; outline-offset: 4px">[PORTRAIT]</div>
-      <div style="flex: 1 1 260px; min-width: 0; display: grid; gap: 4px; font-size: 16px; line-height: 1.5">
-        <p style="margin: 0; color: #FDFCF9; font-weight: 800; font-size: 18px">Written by Wyatt Dawe</p>
-        <p style="margin: 0">[YOUR ONE-LINE BIO]</p>
-      </div>
+    <aside aria-labelledby="note-h" style="margin-top: 56px; border: 2px solid #D7D7D5; border-radius: 20px; padding: 24px 28px; display: grid; gap: 8px; font-size: 16px; line-height: 1.6">
+      <p id="note-h" class="kicker">Note</p>
+      <p style="margin: 0">This article is general information, not legal advice. For the HIPAA rules on using patient information in marketing, see the <a href="https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/marketing/index.html" rel="noopener">HHS guidance on marketing</a>.</p>
+    </aside>
+
+    <div style="margin-top: 40px; padding-top: 32px; border-top: 2px solid #DDB866; display: grid; gap: 6px; font-size: 16px; line-height: 1.5">
+      <p style="margin: 0; color: #FDFCF9; font-weight: 800; font-size: 18px">Written by Wyatt Dawe</p>
+      <p style="margin: 0">Wyatt runs Dawe Digital, a one-person content studio in Pleasant Grove, Utah. See <a href="/services/">the services</a> or <a href="/contact/">start a project</a>.</p>
     </div>
   </div>
 </section>

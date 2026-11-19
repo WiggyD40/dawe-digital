@@ -15,6 +15,15 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
 .display { font-family: 'Anton', Impact, sans-serif; font-weight: 400; text-transform: uppercase; }
 .kicker { margin: 0; font: 700 13px/1 'Inter', system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #DDB866; }
 
+.site-header { padding-top: 16px; padding-bottom: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px; }
+.site-nav { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0 26px; font-weight: 600; font-size: 15px; }
+.nav-cta { padding: 12px 22px; min-height: 44px; }
+/* Phones: logo + button on one row, nav links on the row below. */
+@media (max-width: 600px) {
+  .site-header { justify-content: space-between; }
+  .site-nav { order: 3; flex-basis: 100%; margin-left: 0; gap: 0 20px; border-bottom: 1px solid #333; }
+  .nav-cta { padding: 10px 16px; font-size: 14px; }
+}
 .logo img { display: block; width: clamp(144px, 14vw, 200px); height: auto; }
 .navlink { text-decoration: none; padding: 12px 2px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; }
 .navlink[aria-current="page"] { box-shadow: inset 0 -3px 0 #FF0088; }
