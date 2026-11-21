@@ -3,7 +3,7 @@ export const site = {
   name: 'Dawe Digital',
   url: 'https://dawedigital.com',
   /** Public contact address (a +site Gmail alias). Shown on /contact/ only. */
-  email: '',
+  email: 'daweboy4@gmail.com',
   /** Instagram handle without the @. */
   instagram: '',
   /** Google Apps Script web app URL ending in /exec. Empty = the contact page shows no form. */
