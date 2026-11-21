@@ -1,12 +1,17 @@
 // Light ribbon: a glowing pink → gold → cream trail that follows the pointer (idle drift on touch / no pointer).
 // Ported from the design canvas (Option B). Returns a cleanup function.
+
+// Reduced motion stills the ribbon; ?motion=on overrides it so it can be previewed on a Mac with Reduce Motion on.
+export const reducedMotion = () =>
+  matchMedia('(prefers-reduced-motion: reduce)').matches && new URLSearchParams(location.search).get('motion') !== 'on';
+
 export function initRibbon(canvas, host, opts) {
   const o = Object.assign({ colors: ['#FF0088', '#DDB866', '#FDFCF9'], life: 700, width: 8, glow: 0.55,
     idle: [0.5, 0.3, 0.36, 0.15] }, opts || {});
   const ctx = canvas.getContext('2d');
   if (!ctx) return () => {};
   const G = 6, g = document.createElement('canvas'), gx = g.getContext('2d'); // 1/6-res glow buffer, never attached
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = reducedMotion();
   const touch = matchMedia('(hover: none)').matches;
   const rgb = o.colors.map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
   // t: 0 head .. 1 tail; k darkens toward black instead of alpha (section bg is #000, so joints don't bead)

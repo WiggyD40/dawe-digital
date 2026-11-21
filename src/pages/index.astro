@@ -1,69 +1,80 @@
 ---
 import Base from '../layouts/Base.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import Steps from '../components/Steps.astro';
+import HealthcareBand from '../components/HealthcareBand.astro';
+import { site, ids } from '../data/site';
 
+// Text tiles stand in the hero until real reels and photos are ready. Nothing here pretends to be media.
 const tiles = [
-  { i: 0, slot: 'Reel 01, 9:16', alt: 'Placeholder for reel one', caption: '[Hook line from the reel]', sticker: 'Reel', tilt: -3, st: -4, drop: 32, isReel: true },
-  { i: 1, slot: 'Reel 02, 9:16', alt: 'Placeholder for reel two', caption: '[Client type]', sticker: 'Shoot day', tilt: 1.5, st: 5, drop: 0, isReel: true },
-  { i: 2, slot: 'Photo 01, 9:16', alt: 'Placeholder for photo one', caption: '[Client type]', sticker: 'Photo', tilt: -1, st: 3, drop: 48, isReel: false },
+  { i: 0, sticker: 'Reel', big: 'Hook. Story. Call to action.', small: 'Vertical video, edited for the feed', bg: '#FDFCF9', tilt: -3, st: -4, drop: 32 },
+  { i: 1, sticker: 'Shoot day', big: 'Plan it once. Film it all.', small: 'On site, around your schedule', bg: '#DDB866', tilt: 1.5, st: 5, drop: 0 },
+  { i: 2, sticker: 'Photo', big: 'Your team. Your space. Not stock.', small: 'Team, space, and product photos', bg: '#D7D7D5', tilt: -1, st: 3, drop: 48 },
 ];
 const words = ['Reels', 'Shoot days', 'Photography', 'Carousels', 'Content calendars', 'Monthly reports'];
-const work = [
-  { type: 'Reel', ratio: '9 / 16', slot: 'Reel 03, 9:16', alt: 'Placeholder for a reel project', who: '[Who it was for]', did: '[What I did: planned, filmed, edited]' },
-  { type: 'Photo', ratio: '4 / 5', slot: 'Photo 02, 4:5', alt: 'Placeholder for a photo project', who: '[Who it was for]', did: '[What I did]' },
-  { type: 'Reel', ratio: '9 / 16', slot: 'Reel 04, 9:16', alt: 'Placeholder for a reel project', who: '[Who it was for]', did: '[What I did]' },
-  { type: 'Photo', ratio: '4 / 5', slot: 'Photo 03, 4:5', alt: 'Placeholder for a photo project', who: '[Who it was for]', did: '[What I did]' },
-];
-const services = [
-  { tag: 'Video', name: 'Short-form video & Reels', what: 'We plan a month of Reels together. I film them in one shoot day and edit them ready to post.', who: 'businesses that know they should be posting video and never get to it.' },
-  { tag: 'Photo', name: 'Photography', what: 'Team, space, and product photos that look like your business, not stock.', who: 'new websites, menus, launches, and social.' },
-  { tag: 'Social', name: 'Social content management', what: 'I handle the calendar, graphics, carousels, and posting, then send a short monthly report in plain English.', who: 'owners who want Instagram and Facebook handled.' },
-];
-const steps = [
-  { n: 1, name: 'Plan', body: 'We talk goals, pick ideas, and map out the month.' },
-  { n: 2, name: 'Shoot day', body: 'I film and photograph everything in one visit, around your schedule.' },
-  { n: 3, name: 'Edit', body: 'I cut, caption, and color it all. You review it before anything goes live.' },
-  { n: 4, name: 'Post & review', body: 'Posts go out on schedule. We look at what worked and plan the next month.' },
-];
 const h2 = 'margin: 0; font-size: clamp(44px, 6vw, 88px); line-height: 0.9';
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': ids.business,
+      name: site.name,
+      url: `${site.url}/`,
+      logo: `${site.url}/og.png`,
+      image: `${site.url}/og.png`,
+      description: 'Short-form video, photography, and social content for Utah businesses.',
+      address: { '@type': 'PostalAddress', addressLocality: 'Pleasant Grove', addressRegion: 'UT', addressCountry: 'US' },
+      areaServed: { '@type': 'State', name: 'Utah' },
+      founder: { '@id': ids.person },
+      ...(site.instagram && { sameAs: [`https://www.instagram.com/${site.instagram}/`] }),
+    },
+    {
+      '@type': 'Person',
+      '@id': ids.person,
+      name: 'Wyatt Dawe',
+      url: `${site.url}/about/`,
+      worksFor: { '@id': ids.business },
+      knowsAbout: ['Short-form video', 'Photography', 'Social media marketing'],
+    },
+  ],
+};
 ---
 <Base
   title="Dawe Digital · Reels, photos & social content in Utah"
   description="Dawe Digital is a one-person content studio in Pleasant Grove, Utah. Short-form video, photography, and social content for Utah businesses."
-  footerText="Tell me about your business and what you want to post. I'll get back to you within [X] business days."
+  current="home"
+  jsonld={jsonld}
   footerRibbon
 >
   <section id="top" class="wrap" style="position: relative; isolation: isolate; padding-top: 32px; padding-bottom: 72px">
     <canvas class="ribbon" data-ribbon="hero" aria-hidden="true"></canvas>
     <h1 style="margin: 0; position: relative; z-index: 2; text-shadow: 0 0 2px #000, 0 2px 24px rgba(0,0,0,.7)">
-      <span class="kicker" style="display: block; margin-bottom: 22px; line-height: 1.3">Reels, photos &amp; social content for Utah businesses</span>
-      <span class="display" style="display: block; font-size: clamp(56px, 10vw, 150px); line-height: 0.88; letter-spacing: -0.005em">One shoot day. <span style="color: #FF0088">A month of posts.</span></span>
+      <span class="kicker" style="display: block; margin-bottom: 22px; line-height: 1.3">Reels, photos &amp; social content for Utah businesses</span>{' '}
+      <span class="display" style="display: block; font-size: clamp(52px, 9vw, 136px); line-height: 0.88; letter-spacing: -0.005em">Short videos. Real photos. <span style="color: #FF0088">Posted on time.</span></span>
     </h1>
 
     <div class="hero-grid">
       <div class="hero-copy" style="display: grid; gap: 28px">
         <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D7D7D5">I'm Wyatt, a one-person content studio in Pleasant Grove. I plan it, film it, edit it, and hand you posts that are ready to go.</p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px">
-          <a class="pill pill-pink" href="#contact" style="padding: 14px 24px; min-height: 52px">Start a project</a>
-          <a class="pill pill-line" href="#work" style="padding: 14px 24px; min-height: 52px">See my work</a>
+          <a class="pill pill-pink" href="/contact/" style="padding: 14px 24px; min-height: 52px">Start a project</a>
+          <a class="pill pill-line" href="#how" style="padding: 14px 24px; min-height: 52px">See how it works</a>
         </div>
       </div>
 
-      <div class="tiles" role="region" aria-label="Recent reels and photos" tabindex="0">
+      <ul class="tiles" aria-label="What you get" tabindex="0">
         {tiles.map((t) => (
-          <div class="tile" style={`--tilt: ${t.tilt}deg; --i: ${t.i}; --st: ${t.st}deg; --drop: ${t.drop}px`}>
-            <div role="img" aria-label={t.alt} style="aspect-ratio: 9 / 16; background: #D7D7D5; color: #000; border-radius: 18px; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; box-sizing: border-box; font-size: 13px; font-weight: 600">
-              <span>{t.slot}</span>
-              <span style="align-self: flex-start; background: #DDB866; color: #000; padding: 6px 10px; font-weight: 700; line-height: 1.3">{t.caption}</span>
+          <li class="tile" style={`--tilt: ${t.tilt}deg; --i: ${t.i}; --st: ${t.st}deg; --drop: ${t.drop}px`}>
+            <div class="face" style={`background: ${t.bg}`}>
+              <span class="display" style="font-size: clamp(26px, 2.6vw, 40px); line-height: 0.95">{t.big}</span>
+              <span style="font-size: 14px; font-weight: 700; line-height: 1.35">{t.small}</span>
             </div>
-            {t.isReel && (
-              <span class="play" aria-hidden="true" style="position: absolute; top: 42%; left: 50%; margin-left: -32px; width: 64px; height: 64px; border-radius: 50%; background: #000; color: #FDFCF9; display: grid; place-items: center">
-                <svg width="22" height="22" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor"></path></svg>
-              </span>
-            )}
             <span class="sticker" aria-hidden="true">{t.sticker}</span>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
@@ -82,73 +93,26 @@ const h2 = 'margin: 0; font-size: clamp(44px, 6vw, 88px); line-height: 0.9';
     </div>
   </div>
 
-  <section id="work" class="wrap" aria-labelledby="work-h" style="padding-top: clamp(64px, 8vw, 112px)">
-    <div style="display: grid; gap: 14px; margin-bottom: 36px">
-      <p class="kicker">Selected work</p>
-      <h2 id="work-h" class="display" style={h2}>Recent work</h2>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 24px; align-items: start">
-      {work.map((w) => (
-        <div class="card">
-          <div class="media" role="img" aria-label={w.alt} style={`aspect-ratio: ${w.ratio}; background: #D7D7D5; color: #000; border-radius: 18px; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box; font-size: 13px; font-weight: 600`}>{w.slot}</div>
-          <p class="kicker" style="margin-top: 6px">{w.type}</p>
-          <h3 style="margin: 0; font-size: 20px; font-weight: 700; line-height: 1.25">{w.who}</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #D7D7D5">{w.did}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
   <section id="services" class="wrap" aria-labelledby="svc-h" style="padding-top: clamp(80px, 9vw, 128px)">
-    <h2 id="svc-h" class="display" style={`${h2}; margin-bottom: 36px`}>What I make</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 24px">
-      {services.map((s) => (
-        <article style="background: #FDFCF9; color: #000; border-radius: 20px; padding: 28px; display: grid; gap: 14px; align-content: start">
-          <span style="justify-self: start; background: #000; color: #FDFCF9; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 999px">{s.tag}</span>
-          <h3 class="display" style="margin: 0; font-size: 36px; line-height: 0.95">{s.name}</h3>
-          <p style="margin: 0; font-size: 17px; line-height: 1.5">{s.what}</p>
-          <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3d3d3b"><strong>Good for:</strong> {s.who}</p>
-        </article>
-      ))}
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 32px; margin-bottom: 36px">
+      <h2 id="svc-h" class="display" style={h2}>What I make</h2>
+      <a href="/services/" style="font-weight: 800; min-height: 44px; display: inline-flex; align-items: center">See all services</a>
     </div>
+    <ServiceCards />
   </section>
 
-  <section class="wrap" aria-labelledby="how-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px)">
+  <section id="how" class="wrap" aria-labelledby="how-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px); scroll-margin-top: 16px">
     <h2 id="how-h" class="display" style={`${h2}; margin-bottom: 40px`}>How it works</h2>
-    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 32px">
-      {steps.map((st) => (
-        <li style="display: grid; gap: 12px; align-content: start">
-          <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px">
-            {[1, 2, 3, 4].map((k) => <span style={`height: 3px; border-radius: 2px; background: ${k <= st.n ? '#FF0088' : '#333333'}`}></span>)}
-          </div>
-          <p class="kicker" style="margin-top: 8px">Step {st.n}</p>
-          <h3 class="display" style="margin: 0; font-size: 32px; line-height: 1">{st.name}</h3>
-          <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #D7D7D5; max-width: 32ch">{st.body}</p>
-        </li>
-      ))}
-    </ol>
+    <Steps />
   </section>
 
-  <section class="on-pink" aria-labelledby="hc-h" style="background: #FF0088; color: #000">
-    <div class="wrap" style="padding-top: clamp(64px, 8vw, 104px); padding-bottom: clamp(64px, 8vw, 104px); display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: center">
-      <div style="flex: 1 1 460px; min-width: 0; display: grid; gap: 18px">
-        <p style="margin: 0; font-weight: 800; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase">Healthcare</p>
-        <h2 id="hc-h" class="display" style="margin: 0; font-size: clamp(48px, 6vw, 88px); line-height: 0.9">Yes, I film in clinics.</h2>
-        <p style="margin: 0; font-size: 20px; line-height: 1.5; font-weight: 500; max-width: 48ch">I work in medical marketing every day. I know how to film in a clinic without slowing it down, keep patient information out of frame, and turn complicated care into short videos people actually finish.</p>
-      </div>
-      <a id="blog" href="/blog/batch-film-instagram-reels-medical-clinic/" style="flex: 1 1 340px; max-width: 460px; background: #000; color: #FDFCF9; border-radius: 20px; padding: 28px; text-decoration: none; display: grid; gap: 14px">
-        <span class="kicker">From the blog</span>
-        <span class="display" style="font-size: 32px; line-height: 1">How to batch-film Instagram Reels for a medical clinic</span>
-        <span style="font-weight: 800; text-decoration: underline; text-underline-offset: 6px; color: #FF0088">Read the article</span>
-      </a>
-    </div>
-  </section>
+  <HealthcareBand />
 
-  <section id="about" class="wrap" aria-labelledby="about-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px); display: flex; flex-wrap: wrap; gap: 32px 56px; align-items: center">
-    <div role="img" aria-label="Placeholder for Wyatt's portrait" style="flex: 0 0 auto; width: 240px; max-width: 100%; aspect-ratio: 1 / 1; border-radius: 50%; background: #D7D7D5; color: #000; display: grid; place-items: center; text-align: center; font-size: 13px; font-weight: 600; outline: 6px solid #FF0088; outline-offset: 6px">Your portrait</div>
-    <div style="flex: 1 1 420px; min-width: 0; display: grid; gap: 14px; max-width: 60ch">
+  <section id="about" class="wrap" aria-labelledby="about-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px)">
+    <div style="display: grid; gap: 14px; max-width: 60ch">
       <h2 id="about-h" class="display" style="margin: 0; font-size: clamp(40px, 4.6vw, 64px); line-height: 0.95">Hi, I'm Wyatt</h2>
-      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #D7D7D5">I'm based in Pleasant Grove. I shoot on a Canon R8, edit in DaVinci Resolve and CapCut, and study Social Media Marketing at Ensign College. [YOUR 1–2 SENTENCES: why you love this work.]</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #D7D7D5">I'm based in Pleasant Grove. I shoot on a Canon R8, edit in DaVinci Resolve and CapCut, and study Social Media Marketing at Ensign College.</p>
+      <a href="/about/" style="font-weight: 800; min-height: 44px; display: inline-flex; align-items: center; justify-self: start">More about me</a>
     </div>
   </section>
 </Base>
@@ -158,13 +122,12 @@ const h2 = 'margin: 0; font-size: clamp(44px, 6vw, 88px); line-height: 0.9';
   .hero-copy { margin-top: 64px; animation: rise .6s cubic-bezier(.16,1,.3,1) .3s backwards; }
   .hero-copy p { text-shadow: 0 1px 12px #000; }
   @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
-  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px); padding-top: 24px; }
+  .tiles { list-style: none; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px); padding: 24px 0 0; }
   .tile { position: relative; margin-top: var(--drop); transform: rotate(var(--tilt)); transition: transform .35s cubic-bezier(.2,.8,.2,1); animation: deal .7s cubic-bezier(.16,1,.3,1) backwards; animation-delay: calc(var(--i) * 90ms + 120ms); }
   @keyframes deal { from { transform: translateY(72px) rotate(calc(var(--tilt) + 5deg)); } }
+  .face { aspect-ratio: 9 / 16; color: #000; border-radius: 18px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(16px, 1.6vw, 24px); box-sizing: border-box; }
   .sticker { position: absolute; top: -14px; right: -10px; z-index: 3; background: #FF0088; color: #000; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; padding: 8px 12px; border-radius: 999px; transform: rotate(var(--st)); transition: transform .3s cubic-bezier(.34,1.56,.64,1); animation: pop .45s cubic-bezier(.34,1.56,.64,1) backwards; animation-delay: calc(var(--i) * 90ms + 560ms); }
   @keyframes pop { from { opacity: 0; transform: rotate(var(--st)) scale(.5); } }
-  .play { transition: transform .2s cubic-bezier(.2,.8,.2,1); }
-  .card { display: grid; gap: 10px; align-content: start; }
   .tick { animation: tick 28s linear infinite; }
   @keyframes tick { to { transform: translateX(-50%); } }
   .ticker[data-paused] .tick { animation-play-state: paused; }
@@ -172,36 +135,38 @@ const h2 = 'margin: 0; font-size: clamp(44px, 6vw, 88px); line-height: 0.9';
   .tick-btn .i-play, .ticker[data-paused] .tick-btn .i-pause { display: none; }
   .ticker[data-paused] .tick-btn .i-play { display: block; }
   @media (hover: hover) and (pointer: fine) {
-    .tile:hover, .tile:focus-within { transform: translateY(-10px) rotate(0deg); }
+    .tile:hover { transform: translateY(-10px) rotate(0deg); }
     .tile:hover .sticker { transform: rotate(calc(var(--st) * -1)) translateY(-4px); }
-    .tile:hover .play { transform: scale(1.12); }
   }
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; margin-top: 0; }
     .hero-copy { margin-top: 24px; }
   }
   @media (max-width: 600px) {
-    .tiles { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 24px 4px 16px; margin: 0 -4px; }
+    .tiles { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 28px 12px 32px; margin: 0 -12px; }
     .tiles::-webkit-scrollbar { display: none; }
     .tile { flex: 0 0 62%; max-width: 240px; scroll-snap-align: start; --drop: 0px; }
     .ticker .tick { font-size: 22px; }
+    .hero-copy .pill { flex: 1 1 100%; justify-content: center; }
+  }
+  @media (min-width: 601px) {
+    .tiles { overflow: visible; }
   }
   @media (prefers-reduced-motion: reduce) {
     .tile, .sticker, .hero-copy, .tick { animation: none; }
-    .tile, .sticker, .play { transition: none; }
+    .tile, .sticker { transition: none; }
     .tick-btn { display: none; }
   }
 </style>
 
 <script>
-  import { initRibbon } from '../scripts/ribbon.js';
+  import { initRibbon, reducedMotion } from '../scripts/ribbon.js';
 
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hero = document.querySelector<HTMLCanvasElement>('canvas[data-ribbon="hero"]');
   if (hero?.parentElement) initRibbon(hero, hero.parentElement, { idle: [0.5, 0.3, 0.36, 0.15] });
   // Under reduced motion the footer shows the static swoosh instead.
   const foot = document.querySelector<HTMLCanvasElement>('canvas[data-ribbon="foot"]');
-  if (foot?.parentElement && !reduced) initRibbon(foot, foot.parentElement, { idle: [0.5, 0.3, 0.4, 0.14] });
+  if (foot?.parentElement && !reducedMotion()) initRibbon(foot, foot.parentElement, { idle: [0.5, 0.3, 0.4, 0.14] });
 
   const ticker = document.querySelector<HTMLElement>('.ticker');
   const btn = ticker?.querySelector<HTMLButtonElement>('.tick-btn');

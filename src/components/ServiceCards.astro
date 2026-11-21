@@ -1,0 +1,36 @@
+---
+import { services, article } from '../data/site';
+
+interface Props {
+  /** /services/: add the "What you get" list and the article link. */
+  detail?: boolean;
+}
+const { detail = false } = Astro.props;
+---
+<div class="cards">
+  {services.map((s, i) => (
+    <article class="svc">
+      <span class="tag">{s.tag}</span>
+      <h3 class="display" style="margin: 0; font-size: 36px; line-height: 0.95">{s.name}</h3>
+      <p style="margin: 0; font-size: 17px; line-height: 1.5">{s.what}</p>
+      {detail && (
+        <ul class="get">
+          {s.get.map((g) => <li>{g}</li>)}
+        </ul>
+      )}
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3d3d3b"><strong>Good for:</strong> {s.who}</p>
+      {detail && i === 0 && <a href={article.path} style="font-size: 15px; font-weight: 700">How I batch-film Reels for clinics</a>}
+    </article>
+  ))}
+</div>
+
+<style>
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 24px; }
+  .svc { background: #FDFCF9; color: #000; border-radius: 20px; padding: 28px; display: grid; gap: 14px; align-content: start; }
+  .svc :focus-visible { outline-color: #000; }
+  .svc a { color: #000; text-decoration-color: #FF0088; text-decoration-thickness: 2px; }
+  .tag { justify-self: start; background: #000; color: #FDFCF9; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 999px; }
+  .get { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 16px; line-height: 1.45; }
+  .get li { display: flex; gap: 12px; align-items: baseline; }
+  .get li::before { content: ""; flex: 0 0 8px; height: 8px; border-radius: 2px; background: #FF0088; transform: translateY(-2px); }
+</style>
