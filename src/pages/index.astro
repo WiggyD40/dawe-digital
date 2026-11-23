@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 import Steps from '../components/Steps.astro';
-import HealthcareBand from '../components/HealthcareBand.astro';
 import { site, ids } from '../data/site';
 
 // Text tiles stand in the hero until real reels and photos are ready. Nothing here pretends to be media.
@@ -24,7 +23,7 @@ const jsonld = {
       url: `${site.url}/`,
       logo: `${site.url}/og.png`,
       image: `${site.url}/og.png`,
-      description: 'Short-form video, photography, social content, and websites for Utah businesses.',
+      description: 'Short-form video, photography, social content, and websites for small businesses in Utah.',
       address: { '@type': 'PostalAddress', addressLocality: 'Pleasant Grove', addressRegion: 'UT', addressCountry: 'US' },
       areaServed: { '@type': 'State', name: 'Utah' },
       founder: { '@id': ids.person },
@@ -43,7 +42,7 @@ const jsonld = {
 ---
 <Base
   title="Dawe Digital · Reels, photos & social content in Utah"
-  description="Dawe Digital is a one-person content studio in Pleasant Grove, Utah. Short-form video, photography, social content, and websites for Utah businesses."
+  description="Dawe Digital is a one-person content studio in Pleasant Grove, Utah. Short-form video, photography, social content, and websites for small businesses in Utah."
   current="home"
   jsonld={jsonld}
   footerRibbon
@@ -51,7 +50,7 @@ const jsonld = {
   <section id="top" class="wrap" style="position: relative; isolation: isolate; padding-top: 32px; padding-bottom: 72px">
     <canvas class="ribbon" data-ribbon="hero" aria-hidden="true"></canvas>
     <h1 style="margin: 0; position: relative; z-index: 2; text-shadow: 0 0 2px #000, 0 2px 24px rgba(0,0,0,.7)">
-      <span class="kicker" style="display: block; margin-bottom: 22px; line-height: 1.3">Reels, photos &amp; social content for Utah businesses</span>{' '}
+      <span class="kicker" style="display: block; margin-bottom: 22px; line-height: 1.3">Reels, photos &amp; social content for small businesses</span>{' '}
       <span class="display" style="display: block; font-size: clamp(52px, 9vw, 136px); line-height: 0.88; letter-spacing: -0.005em">Short videos. Real photos. <span style="color: #FF0088">Posted on time.</span></span>
     </h1>
 
@@ -101,12 +100,10 @@ const jsonld = {
     <ServiceCards />
   </section>
 
-  <section id="how" class="wrap" aria-labelledby="how-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px); scroll-margin-top: 16px">
+  <section id="how" class="wrap" aria-labelledby="how-h" style="padding-top: clamp(80px, 9vw, 128px); scroll-margin-top: 16px">
     <h2 id="how-h" class="display" style={`${h2}; margin-bottom: 40px`}>How it works</h2>
     <Steps />
   </section>
-
-  <HealthcareBand />
 
   <section id="about" class="wrap" aria-labelledby="about-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px)">
     <div style="display: grid; gap: 14px; max-width: 60ch">

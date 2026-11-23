@@ -2,13 +2,11 @@
 import Base from '../../layouts/Base.astro';
 import ServiceCards from '../../components/ServiceCards.astro';
 import Steps from '../../components/Steps.astro';
-import HealthcareBand from '../../components/HealthcareBand.astro';
 import { site } from '../../data/site';
 
 const faq = [
-  { q: 'Where do you work?', a: "I'm based in Pleasant Grove and work with businesses in Utah." },
+  { q: 'Where do you work?', a: "I'm based in Pleasant Grove and work with small businesses in Utah." },
   { q: 'Do I need to be on camera?', a: "No. Some Reels work best with you or your team talking. Others use footage of your space, products, and process. We'll plan what fits." },
-  { q: 'Do you work with clinics?', a: 'Yes. I work in medical marketing every day, so I plan shoots that keep patient information out of frame and fit around patient schedules.' },
   { q: 'What does it cost?', a: "Every project is different. Tell me what you need and I'll send you a quote." },
   { q: 'How do we start?', a: `Send me a message through the contact page. ${site.replyTime}` },
 ];
@@ -25,7 +23,7 @@ const h2 = 'margin: 0 0 40px; font-size: clamp(44px, 6vw, 88px); line-height: 0.
 ---
 <Base
   title="Services · Dawe Digital"
-  description="Short-form video and Reels, photography, social content management, and website setup for Utah businesses, from Dawe Digital in Pleasant Grove."
+  description="Short-form video and Reels, photography, social content management, and website setup for small businesses in Utah, from Dawe Digital in Pleasant Grove."
   current="services"
   jsonld={jsonld}
 >
@@ -37,12 +35,10 @@ const h2 = 'margin: 0 0 40px; font-size: clamp(44px, 6vw, 88px); line-height: 0.
     <ServiceCards detail />
   </section>
 
-  <section class="wrap" aria-labelledby="how-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px)">
+  <section class="wrap" aria-labelledby="how-h" style="padding-top: clamp(80px, 9vw, 128px)">
     <h2 id="how-h" class="display" style={h2}>How it works</h2>
     <Steps />
   </section>
-
-  <HealthcareBand />
 
   <section class="wrap" aria-labelledby="faq-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(48px, 6vw, 80px)">
     <h2 id="faq-h" class="display" style={h2}>Questions</h2>

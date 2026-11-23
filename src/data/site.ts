@@ -28,7 +28,7 @@ export const services = [
     tag: 'Photo',
     name: 'Photography',
     what: 'Team, space, and product photos that look like your business, not stock.',
-    who: 'new websites, menus, launches, and social.',
+    who: 'new websites, launches, and social.',
     get: ['Team and headshot photos', 'Your space, inside and out', 'Product and detail shots', 'Edited files sized for web and social'],
   },
   {
