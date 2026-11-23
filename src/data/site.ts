@@ -38,6 +38,13 @@ export const services = [
     who: 'owners who want Instagram and Facebook handled.',
     get: ['A monthly content calendar', 'Graphics and carousels', 'Scheduling and posting to Instagram and Facebook', 'A short monthly report in plain English'],
   },
+  {
+    tag: 'Web',
+    name: 'Website setup',
+    what: "No website yet, or one that doesn't look like you anymore? I build a new one or refresh what you have, using the photos and videos I shoot of your business.",
+    who: "businesses without a website, or with one that's out of date.",
+    get: ['A new site, or a refresh of the one you have', 'Your own photos and videos built in', 'Pages for your services, location, and contact', 'Shaped around what you ask for'],
+  },
 ];
 
 export const steps = [

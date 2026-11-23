@@ -11,7 +11,7 @@ const tiles = [
   { i: 1, sticker: 'Shoot day', big: 'Plan it once. Film it all.', small: 'On site, around your schedule', bg: '#DDB866', tilt: 1.5, st: 5, drop: 0 },
   { i: 2, sticker: 'Photo', big: 'Your team. Your space. Not stock.', small: 'Team, space, and product photos', bg: '#D7D7D5', tilt: -1, st: 3, drop: 48 },
 ];
-const words = ['Reels', 'Shoot days', 'Photography', 'Carousels', 'Content calendars', 'Monthly reports'];
+const words = ['Reels', 'Shoot days', 'Photography', 'Carousels', 'Content calendars', 'Monthly reports', 'Websites'];
 const h2 = 'margin: 0; font-size: clamp(44px, 6vw, 88px); line-height: 0.9';
 
 const jsonld = {
@@ -24,7 +24,7 @@ const jsonld = {
       url: `${site.url}/`,
       logo: `${site.url}/og.png`,
       image: `${site.url}/og.png`,
-      description: 'Short-form video, photography, and social content for Utah businesses.',
+      description: 'Short-form video, photography, social content, and websites for Utah businesses.',
       address: { '@type': 'PostalAddress', addressLocality: 'Pleasant Grove', addressRegion: 'UT', addressCountry: 'US' },
       areaServed: { '@type': 'State', name: 'Utah' },
       founder: { '@id': ids.person },
@@ -43,7 +43,7 @@ const jsonld = {
 ---
 <Base
   title="Dawe Digital · Reels, photos & social content in Utah"
-  description="Dawe Digital is a one-person content studio in Pleasant Grove, Utah. Short-form video, photography, and social content for Utah businesses."
+  description="Dawe Digital is a one-person content studio in Pleasant Grove, Utah. Short-form video, photography, social content, and websites for Utah businesses."
   current="home"
   jsonld={jsonld}
   footerRibbon
@@ -83,7 +83,7 @@ const jsonld = {
       <svg class="i-pause" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"></path></svg>
       <svg class="i-play" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor"></path></svg>
     </button>
-    <p class="sr-only">Reels, shoot days, photography, carousels, content calendars, monthly reports.</p>
+    <p class="sr-only">Reels, shoot days, photography, carousels, content calendars, monthly reports, websites.</p>
     <div aria-hidden="true" style="overflow: hidden; flex: 1 1 auto; min-width: 0">
       <div class="tick display" style="display: flex; align-items: center; width: max-content; font-size: 26px; color: #DDB866; white-space: nowrap">
         {words.concat(words).map((w) => (

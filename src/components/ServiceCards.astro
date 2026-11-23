@@ -25,7 +25,10 @@ const { detail = false } = Astro.props;
 </div>
 
 <style>
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 24px; }
+  /* 4 cards: 4 across, 2×2, or stacked, so no card sits alone on a row. */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1200px) { .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .svc { background: #FDFCF9; color: #000; border-radius: 20px; padding: 28px; display: grid; gap: 14px; align-content: start; }
   .svc :focus-visible { outline-color: #000; }
   .svc a { color: #000; text-decoration-color: #FF0088; text-decoration-thickness: 2px; }
