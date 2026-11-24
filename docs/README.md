@@ -5,7 +5,7 @@ Astro static site, deployed to GitHub Pages by `.github/workflows/deploy.yml` on
 ## Pages
 - `/` homepage (`src/pages/index.astro`)
 - `/services/` (cards have anchors: `#video`, `#photo`, `#social`, `#web`), `/about/`, `/contact/`, `/contact/thanks/` (noindex)
-- `/privacy/`: describes the real setup. The contact-form paragraph only shows when `formUrl` is set. Update it if hosting, email, or the form provider changes.
+- `/privacy/`: describes the real setup. The contact-form paragraph and the "Google Sheet" clause under Deleting your information only show when `formUrl` is set. Update it if hosting, email, or the form provider changes.
 - `/blog/` blog index and `/blog/batch-film-instagram-reels-medical-clinic/` (article text is Wyatt's, verbatim; hand-written HTML, not Markdown, so quotes stay as written)
 - `404.html` (noindex)
 

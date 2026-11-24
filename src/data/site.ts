@@ -51,7 +51,7 @@ export const steps = [
   { n: 1, name: 'Plan', body: 'We talk goals, pick ideas, and map out the month.' },
   { n: 2, name: 'Shoot day', body: 'I film and photograph on site, around your schedule.' },
   { n: 3, name: 'Edit', body: 'I cut, caption, and color it all. You review it before anything goes live.' },
-  { n: 4, name: 'Post & review', body: 'If I manage your social, posts go out on schedule and we review what worked. Otherwise you get finished files to post yourself.' },
+  { n: 4, name: 'Post & review', body: 'You get finished files ready to post. If I manage your social, I post on schedule and we review what worked.' },
 ];
 
 export const article = {
