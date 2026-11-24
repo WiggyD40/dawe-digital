@@ -4,7 +4,9 @@
 // Update: Manage deployments > pencil > Version: New version. A new deployment changes the URL.
 
 var REQUIRED = ['name', 'email', 'message'];
-var FIELDS = ['name', 'email', 'business', 'message'];
+var FIELDS = ['name', 'email', 'business', 'message', 'service', 'timing'];
+// Must match the <select> options on /contact/. Anything else is stored as ''.
+var SERVICES = ['Video', 'Photography', 'Social management', 'Website', 'Not sure yet'];
 var HONEYPOT = 'contact_me_by_fax_only';
 var MIN_MS = 3000; // faster than this (JS path) is a bot
 var THANKS_URL = 'https://dawedigital.com/contact/thanks/';
@@ -15,12 +17,15 @@ function doPost(e) {
 
   if (!isSpam_(p)) {
     var v = {};
-    FIELDS.forEach(function (k) { v[k] = clean_(p[k]); });
+    FIELDS.forEach(function (k) { v[k] = clean_(p[k], k === 'message' ? 5000 : k === 'email' ? 320 : 200); });
+    // Single-line fields: a newline could fake an extra line (e.g. "Email: ...") in the lead email.
+    ['name', 'business', 'timing'].forEach(function (k) { v[k] = v[k].replace(/[\r\n]+/g, ' '); });
+    if (SERVICES.indexOf(v.service) < 0) v.service = '';
     // A very fast JS submit is probably a bot but might be autofill: keep it, flagged, without an email.
     var fast = isJs && !(Number(p.elapsed) >= MIN_MS);
     // Save first, so the lead survives even if email fails (quota is 100/day).
     SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]
-      .appendRow([new Date(), v.name, v.email, v.business, v.message, fast ? 'fast' : ''].map(sheetSafe_));
+      .appendRow([new Date(), v.name, v.email, v.business, v.message, fast ? 'fast' : '', v.service, v.timing].map(sheetSafe_));
     if (!fast && !flooded_()) {
       try {
         var opts = {};
@@ -28,7 +33,8 @@ function doPost(e) {
         MailApp.sendEmail(
           Session.getEffectiveUser().getEmail(),
           ('New lead: ' + (v.name || 'website')).replace(/[\r\n]+/g, ' ').slice(0, 200),
-          'Name: ' + v.name + '\nEmail: ' + v.email + '\nBusiness: ' + v.business + '\n\n' + v.message,
+          'Name: ' + v.name + '\nEmail: ' + v.email + '\nBusiness: ' + v.business +
+            '\nNeeds: ' + v.service + '\nTiming/budget: ' + v.timing + '\n\n' + v.message,
           opts
         );
       } catch (err) {
@@ -60,8 +66,8 @@ function flooded_() {
   return n > 20;
 }
 
-function clean_(s) {
-  return String(s == null ? '' : s).trim().slice(0, 5000);
+function clean_(s, max) {
+  return String(s == null ? '' : s).trim().slice(0, max || 5000);
 }
 
 // A leading = + - @ tab or CR would run as a formula in the Sheet.

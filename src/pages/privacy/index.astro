@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+---
+<Base
+  title="Privacy · Dawe Digital"
+  description="What happens to your information on dawedigital.com: no analytics or tracking, and how emails and inquiries to Dawe Digital are handled."
+>
+  <section class="wrap" aria-labelledby="privacy-h" style="padding-top: clamp(48px, 7vw, 104px); padding-bottom: clamp(64px, 8vw, 112px); display: grid; gap: 28px">
+    <h1 id="privacy-h" class="display" style="margin: 0; font-size: clamp(56px, 8vw, 96px); line-height: 0.88">Privacy</h1>
+    <div class="prose">
+      <p>Last updated November 23, 2026.</p>
+
+      <h2>The short version</h2>
+      <p>This site has no analytics, ads, or tracking cookies. Its fonts and images load from this site, not from other companies.</p>
+
+      <h2>Hosting</h2>
+      <p>dawedigital.com is hosted on GitHub Pages. GitHub may log technical details such as your IP address when you visit. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+
+      <h2>When you contact me</h2>
+      <p>If you email me{site.email && <> at <a href={`mailto:${site.email}`}>{site.email}</a></>}, your message goes to my Gmail inbox, which Google processes. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>. I use what you send only to reply to you and to work on your project.</p>
+      {site.formUrl && (
+        <p>The contact form sends your name, email, business name, what you need, your timing or budget, and your message. It's saved to a Google Sheet in my personal Google account and emailed to me. I use it only to reply to you.</p>
+      )}
+
+      <h2>Deleting your information</h2>
+      <p>I keep inquiries only as long as I need them to follow up or work with you. Email me any time and I'll delete yours.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .prose { max-width: 62ch; font-size: 18px; line-height: 1.6; color: #D7D7D5; }
+  .prose p { margin: 0 0 18px; }
+  .prose h2 { margin: 36px 0 10px; font-size: 20px; line-height: 1.3; color: #FDFCF9; }
+</style>

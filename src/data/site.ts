@@ -2,7 +2,7 @@
 export const site = {
   name: 'Dawe Digital',
   url: 'https://dawedigital.com',
-  /** Public contact address (a +site Gmail alias). Shown on /contact/ only. */
+  /** Public contact address. Shown on /contact/ (and named on /privacy/) only. */
   email: 'daweboy4@gmail.com',
   /** Instagram handle without the @. */
   instagram: '',
@@ -51,7 +51,7 @@ export const steps = [
   { n: 1, name: 'Plan', body: 'We talk goals, pick ideas, and map out the month.' },
   { n: 2, name: 'Shoot day', body: 'I film and photograph on site, around your schedule.' },
   { n: 3, name: 'Edit', body: 'I cut, caption, and color it all. You review it before anything goes live.' },
-  { n: 4, name: 'Post & review', body: 'Posts go out on schedule. We look at what worked and plan the next month.' },
+  { n: 4, name: 'Post & review', body: 'If I manage your social, posts go out on schedule and we review what worked. Otherwise you get finished files to post yourself.' },
 ];
 
 export const article = {

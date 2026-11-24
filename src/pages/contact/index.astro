@@ -12,8 +12,8 @@ const jsonld = {
 };
 ---
 <Base
-  title="Start a project · Dawe Digital"
-  description="Tell Dawe Digital about your business and what you want to post. Reels, photos, and social content in Pleasant Grove, Utah."
+  title="Start a Content Project · Dawe Digital"
+  description="Tell Wyatt about your business, what you need, and your timing. Videos, photos, social content, or a website, from Dawe Digital in Pleasant Grove, Utah."
   current="contact"
   jsonld={jsonld}
   footerTitle="Thanks for thinking of me."
@@ -23,24 +23,54 @@ const jsonld = {
   <section class="wrap" aria-labelledby="contact-h" style="padding-top: clamp(48px, 7vw, 104px); padding-bottom: clamp(64px, 8vw, 112px); display: grid; gap: 28px">
     <p class="kicker">Contact</p>
     <h1 id="contact-h" class="display" style="margin: 0; font-size: clamp(56px, 8vw, 96px); line-height: 0.88">Start a <span style="color: #FF0088">project</span></h1>
-    <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D7D7D5; max-width: 52ch">Tell me about your business and what you want to post. {site.replyTime}</p>
+    <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D7D7D5; max-width: 52ch">What does your business do, what do you need, and when? If you're still figuring that out, tell me where you're stuck. {site.replyTime}</p>
+
+    {!site.formUrl && site.email && (
+      <div style="display: grid; gap: 28px; max-width: 640px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+          <a class="pill pill-pink" href={`mailto:${site.email}`} style="padding: 14px 28px; min-height: 52px; font-size: 17px">Email me</a>
+          <span style="font-size: 17px; color: #D7D7D5">or copy <strong style="color: #FDFCF9; user-select: all">{site.email}</strong></span>
+        </div>
+        <div>
+          <h2 class="kicker" style="margin: 0 0 14px">What to include</h2>
+          <ul class="include">
+            <li>What your business does</li>
+            <li>What you need: video, photos, social, a website, or not sure yet</li>
+            <li>Your timing</li>
+            <li>A budget, if you have one in mind</li>
+          </ul>
+        </div>
+        <p class="note">I use your email only to reply. <a href="/privacy/">Privacy</a></p>
+      </div>
+    )}
 
     {site.formUrl && (
       <form class="form" method="post" action={site.formUrl} data-contact>
         <label>Your name<input name="name" autocomplete="name" required maxlength="200" /></label>
         <label>Email<input name="email" type="email" autocomplete="email" required maxlength="320" /></label>
         <label><span>Business name <span class="opt">(optional)</span></span><input name="business" autocomplete="organization" maxlength="200" /></label>
-        <label>What do you want to post?<textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+        <label>What do you need?
+          <select name="service" required>
+            <option value="">Choose one</option>
+            <option>Video</option>
+            <option>Photography</option>
+            <option>Social management</option>
+            <option>Website</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label>Tell me about the project<textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+        <label><span>Timing or budget <span class="opt">(optional)</span></span><input name="timing" maxlength="200" /></label>
         <div class="hp" aria-hidden="true"><label>Leave this empty<input name="contact_me_by_fax_only" tabindex="-1" autocomplete="off" /></label></div>
         <input type="hidden" name="js" value="0" />
         <input type="hidden" name="elapsed" value="" />
-        <p class="note">Used only to reply to you. Please don't include sensitive personal information.</p>
+        <p class="note">Used only to reply to you. Please don't include sensitive personal information. <a href="/privacy/">Privacy</a></p>
         <button class="pill pill-pink" type="submit">Send</button>
         <p class="status" role="status" data-status></p>
       </form>
     )}
 
-    {site.email && (
+    {site.formUrl && site.email && (
       <p style="margin: 0; font-size: 17px; color: #D7D7D5">Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
     )}
   </section>
@@ -50,9 +80,10 @@ const jsonld = {
   .form { display: grid; gap: 20px; max-width: 640px; }
   .form label { display: grid; gap: 8px; font-weight: 700; font-size: 15px; }
   .opt { font-weight: 400; color: #D7D7D5; }
-  .form input, .form textarea { font: 400 17px/1.5 'Inter', system-ui, sans-serif; color: #FDFCF9; background: #000; border: 2px solid #D7D7D5; border-radius: 12px; padding: 12px 14px; min-height: 48px; box-sizing: border-box; width: 100%; }
+  .include { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; font-size: 17px; line-height: 1.5; color: #D7D7D5; }
+  .form input, .form textarea, .form select { font: 400 17px/1.5 'Inter', system-ui, sans-serif; color: #FDFCF9; background: #000; border: 2px solid #D7D7D5; border-radius: 12px; padding: 12px 14px; min-height: 48px; box-sizing: border-box; width: 100%; }
   .form textarea { resize: vertical; }
-  .form input:focus-visible, .form textarea:focus-visible { outline: 3px solid #DDB866; outline-offset: 3px; border-color: #FDFCF9; }
+  .form input:focus-visible, .form textarea:focus-visible, .form select:focus-visible { outline: 3px solid #DDB866; outline-offset: 3px; border-color: #FDFCF9; }
   .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   .note { margin: 0; font-size: 15px; line-height: 1.5; color: #D7D7D5; }
   .form button { justify-self: start; border: 0; cursor: pointer; font: 800 17px/1 'Inter', system-ui, sans-serif; padding: 16px 32px; min-height: 52px; }
