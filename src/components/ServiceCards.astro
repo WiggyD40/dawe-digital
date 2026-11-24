@@ -9,9 +9,9 @@ const { detail = false } = Astro.props;
 ---
 <div class="cards">
   {services.map((s, i) => (
-    <article class="svc">
+    <article class="svc" id={detail ? s.tag.toLowerCase() : undefined}>
       <span class="tag">{s.tag}</span>
-      <h3 class="display" style="margin: 0; font-size: 36px; line-height: 0.95">{s.name}</h3>
+      <h3 class="display" style="margin: 0; font-size: 36px; line-height: 0.95">{detail ? s.name : <a href={`/services/#${s.tag.toLowerCase()}`} style="color: inherit">{s.name}</a>}</h3>
       <p style="margin: 0; font-size: 17px; line-height: 1.5">{s.what}</p>
       {detail && (
         <ul class="get">

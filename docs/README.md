@@ -4,7 +4,8 @@ Astro static site, deployed to GitHub Pages by `.github/workflows/deploy.yml` on
 
 ## Pages
 - `/` homepage (`src/pages/index.astro`)
-- `/services/`, `/about/`, `/contact/`, `/contact/thanks/` (noindex)
+- `/services/` (cards have anchors: `#video`, `#photo`, `#social`, `#web`), `/about/`, `/contact/`, `/contact/thanks/` (noindex)
+- `/privacy/`: describes the real setup. The contact-form paragraph and the "Google Sheet" clause under Deleting your information only show when `formUrl` is set. Update it if hosting, email, or the form provider changes.
 - `/blog/` blog index and `/blog/batch-film-instagram-reels-medical-clinic/` (article text is Wyatt's, verbatim; hand-written HTML, not Markdown, so quotes stay as written)
 - `404.html` (noindex)
 
@@ -21,11 +22,16 @@ Astro static site, deployed to GitHub Pages by `.github/workflows/deploy.yml` on
 ## Contact form (Google Apps Script)
 The form posts to a web app bound to a Google Sheet in Wyatt's **personal** Google account. Source: `apps-script/Code.gs`.
 
-First deploy, in an incognito window signed in to the personal Gmail only:
-1. Create a Sheet ("Dawe Digital leads"). Extensions → Apps Script. Paste `Code.gs`. Save.
+Until `formUrl` is set, `/contact/` is email-first (an "Email me" button and a what-to-include list).
+
+First deploy, in an incognito window signed in to the personal Gmail only. Never the arcmedicalcenter.com account: the repo sits in that Workspace Drive, but leads must not, and `/privacy/` says they go to the personal account.
+1. Create a Sheet ("Dawe Digital leads"). Put this header row in row 1: Date, Name, Email, Business, Message, Flag, Service, Timing. Select columns B to H and choose Format → Number → Plain text, so a budget like "$500" or a date like "3/15" stays as typed. Then Extensions → Apps Script. Paste `Code.gs`. Save.
 2. Run `authorize` once and approve the "unverified app" warning.
 3. Deploy → New deployment → type **Web app**. Execute as **Me**, Who has access **Anyone**. Deploy.
-4. Copy the URL ending in `/exec` into `formUrl` in `src/data/site.ts`.
+4. Copy the URL ending in `/exec` into `formUrl` in `src/data/site.ts`. Deploy the script first, then set `formUrl`. An older deployment silently drops `service` and `timing`.
+5. Send two test inquiries, one with Timing `=1+1` and one with `+500`. Both should arrive by email and appear in the Sheet. If the Plain-text cells show a leading `'`, that's the formula guard in `sheetSafe_` and it's harmless.
+
+The `service` value is checked against `SERVICES` in `Code.gs`, which must match the `<select>` options on `/contact/`. Anything else is saved as blank. `service` and `timing` are not required on the server, so a submission without them still saves.
 
 Lead emails go to the account that owns the script (`Session.getEffectiveUser()`), so no address is in this repo. Every valid submission is saved as a Sheet row. Rows marked `fast` (sent in under 3 seconds) and anything past 20 posts in 10 minutes are saved without an email, so check the Sheet now and then.
 

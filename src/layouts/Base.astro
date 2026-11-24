@@ -36,7 +36,7 @@ const {
   noindex = false,
   ogType = 'website',
   jsonld,
-  footerTitle = "Let's plan your first shoot day.",
+  footerTitle = "Let's talk about your next project.",
   footerText = `Tell me about your business and what you want to post. ${site.replyTime}`,
   footerRibbon = false,
   footerCta = true,
@@ -106,6 +106,8 @@ const ariaCurrent = (href: string, key: string) =>
         </div>
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; font-size: 14px; color: #D7D7D5">
           {site.instagram && <a href={`https://www.instagram.com/${site.instagram}/`} rel="me" style="min-height: 44px; display: inline-flex; align-items: center">See my latest work on Instagram</a>}
+          <a href="/contact/" style="min-height: 44px; display: inline-flex; align-items: center">Contact</a>
+          <a href="/privacy/" style="min-height: 44px; display: inline-flex; align-items: center">Privacy</a>
           <span>Pleasant Grove, UT</span><span>© 2026 Dawe Digital</span>
         </div>
       </div>
