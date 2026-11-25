@@ -5,7 +5,7 @@ import { steps } from '../data/site';
   {steps.map((st) => (
     <li style="display: grid; gap: 12px; align-content: start">
       <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px">
-        {[1, 2, 3, 4].map((k) => <span style={`height: 3px; border-radius: 2px; background: ${k <= st.n ? '#FF0088' : '#333333'}`}></span>)}
+        {[1, 2, 3, 4].map((k) => <span style={`height: 3px; border-radius: 2px; background: ${k <= st.n ? '#EB0352' : '#333333'}`}></span>)}
       </div>
       <p class="kicker" style="margin-top: 8px">Step {st.n}</p>
       <h3 class="display" style="margin: 0; font-size: 32px; line-height: 1">{st.name}</h3>

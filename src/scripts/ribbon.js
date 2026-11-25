@@ -6,7 +6,7 @@ export const reducedMotion = () =>
   matchMedia('(prefers-reduced-motion: reduce)').matches && new URLSearchParams(location.search).get('motion') !== 'on';
 
 export function initRibbon(canvas, host, opts) {
-  const o = Object.assign({ colors: ['#FF0088', '#DDB866', '#FDFCF9'], life: 700, width: 8, glow: 0.55,
+  const o = Object.assign({ colors: ['#EB0352', '#DDB866', '#FDFCF9'], life: 700, width: 8, glow: 0.55,
     idle: [0.5, 0.3, 0.36, 0.15] }, opts || {});
   const ctx = canvas.getContext('2d');
   if (!ctx) return () => {};
