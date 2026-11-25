@@ -8,9 +8,9 @@ import portrait from '../assets/wyatt-cutout.png';
 
 // Text tiles stand in the hero until real reels and photos are ready. Nothing here pretends to be media.
 const tiles = [
-  { i: 0, sticker: 'Reel', big: 'Hook. Story. Call to action.', small: 'Vertical video, edited for the feed', bg: '#FDFCF9', tilt: -3, st: -4, drop: 32 },
-  { i: 1, sticker: 'Shoot day', big: 'Plan it once. Film it all.', small: 'On site, around your schedule', bg: '#DDB866', tilt: 1.5, st: 5, drop: 0 },
-  { i: 2, sticker: 'Photo', big: 'Your team. Your space. Not stock.', small: 'Team, space, and product photos', bg: '#D7D7D5', tilt: -1, st: 3, drop: 48 },
+  { i: 0, sticker: 'Reel', big: 'Hook. Story. Call to action.', small: 'Vertical video, edited for the feed', bg: '#FAF9F6', tilt: -3, st: -4, drop: 32 },
+  { i: 1, sticker: 'Shoot day', big: 'Plan it once. Film it all.', small: 'On site, around your schedule', bg: '#D9D9D9', tilt: 1.5, st: 5, drop: 0 },
+  { i: 2, sticker: 'Photo', big: 'Your team. Your space. Not stock.', small: 'Team, space, and product photos', bg: '#D9D9D9', tilt: -1, st: 3, drop: 48 },
 ];
 const words = ['Reels', 'Shoot days', 'Photography', 'Carousels', 'Content calendars', 'Monthly reports', 'Websites'];
 const h2 = 'margin: 0; font-size: clamp(44px, 6vw, 88px); line-height: 0.9';
@@ -55,10 +55,10 @@ const jsonld = {
       <p class="display wordmark" aria-hidden="true"><span>Dawe</span><span>Digital</span></p>
       <div class="portrait-wrap"><Image class="portrait" src={portrait} alt="Wyatt Dawe" widths={[480, 900, 1161]} sizes="(max-width: 900px) 100vw, 900px" loading="eager" fetchpriority="high" /></div>
       <h1 class="hero-h1" style="text-shadow: 0 0 2px #000, 0 2px 24px rgba(0,0,0,.7)">
-        <span class="display" style="display: block; line-height: 0.88; letter-spacing: -0.005em">Short videos. Real photos. <span style="color: #FF0088">Posted on time.</span></span>
+        <span class="display" style="display: block; line-height: 0.88; letter-spacing: -0.005em">Short videos. Real photos. <span style="color: #EB0352">Posted on time.</span></span>
       </h1>
       <div class="hero-copy" style="display: grid; gap: 28px">
-        <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D7D7D5">I'm Wyatt, a one-person content studio in Pleasant Grove. I plan it, film it, edit it, and hand you posts that are ready to go.</p>
+        <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D9D9D9">I'm Wyatt, a one-person content studio in Pleasant Grove. I plan it, film it, edit it, and hand you posts that are ready to go.</p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px">
           <a class="pill pill-pink" href="/contact/" style="padding: 14px 24px; min-height: 52px">Start a project</a>
           <a class="pill pill-line" href="#how" style="padding: 14px 24px; min-height: 52px">See how it works</a>
@@ -81,16 +81,16 @@ const jsonld = {
     </div>
   </section>
 
-  <div class="ticker" style="border-top: 2px solid #DDB866; border-bottom: 2px solid #DDB866; display: flex; align-items: center">
+  <div class="ticker" style="border-top: 2px solid #D9D9D9; border-bottom: 2px solid #D9D9D9; display: flex; align-items: center">
     <button type="button" class="tick-btn" aria-label="Pause the scrolling list" aria-pressed="false">
       <svg class="i-pause" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"></path></svg>
       <svg class="i-play" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor"></path></svg>
     </button>
     <p class="sr-only">Reels, shoot days, photography, carousels, content calendars, monthly reports, websites.</p>
     <div aria-hidden="true" style="overflow: hidden; flex: 1 1 auto; min-width: 0">
-      <div class="tick display" style="display: flex; align-items: center; width: max-content; font-size: 26px; color: #DDB866; white-space: nowrap">
+      <div class="tick display" style="display: flex; align-items: center; width: max-content; font-size: 26px; color: #D9D9D9; white-space: nowrap">
         {words.concat(words).map((w) => (
-          <span style="display: inline-flex; align-items: center; gap: 28px; padding: 12px 14px">{w} <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z" fill="#FF0088"></path></svg></span>
+          <span style="display: inline-flex; align-items: center; gap: 28px; padding: 12px 14px">{w} <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z" fill="#EB0352"></path></svg></span>
         ))}
       </div>
     </div>
@@ -112,7 +112,7 @@ const jsonld = {
   <section id="about" class="wrap" aria-labelledby="about-h" style="padding-top: clamp(80px, 9vw, 128px); padding-bottom: clamp(80px, 9vw, 128px)">
     <div style="display: grid; gap: 14px; max-width: 60ch">
       <h2 id="about-h" class="display" style="margin: 0; font-size: clamp(40px, 4.6vw, 64px); line-height: 0.95">Hi, I'm Wyatt</h2>
-      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #D7D7D5">I'm based in Pleasant Grove. I shoot on a Canon R8, edit in DaVinci Resolve and CapCut, and study Social Media Marketing at Ensign College.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #D9D9D9">I'm based in Pleasant Grove. I shoot on a Canon R8, edit in DaVinci Resolve and CapCut, and study Social Media Marketing at Ensign College.</p>
       <a href="/about/" style="font-weight: 800; min-height: 44px; display: inline-flex; align-items: center; justify-self: start">More about me</a>
     </div>
   </section>
@@ -123,9 +123,9 @@ const jsonld = {
   /* Row 1: wordmark behind the portrait. Row 2: headline and copy, pulled up over the portrait's faded chest so the face stays clear. */
   /* --wm sizes the wordmark and, through it, the portrait and its lift, so the head stays over the A and W while short screens shrink everything. */
   .stage { --wm: min(26vw, 380px, 30svh); position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 340px); gap: 0 48px; }
-  .wordmark { grid-area: 1 / 1 / 2 / -1; align-self: start; justify-self: center; margin: 2vh 0 0; z-index: 1; font-size: var(--wm); line-height: .82; text-align: center; white-space: nowrap; color: rgba(253,252,249,.14); pointer-events: none; user-select: none; }
+  .wordmark { grid-area: 1 / 1 / 2 / -1; align-self: start; justify-self: center; margin: 2vh 0 0; z-index: 1; font-size: var(--wm); line-height: .82; text-align: center; white-space: nowrap; color: rgba(250,249,246,.14); pointer-events: none; user-select: none; }
   .wordmark span { display: block; }
-  .wordmark span + span { color: rgba(255,0,136,.3); }
+  .wordmark span + span { color: rgba(235,3,82,.3); }
   /* The wrapper is only as tall as the head-and-collar part (top 470 of 1354px), so it sets row 1; the rest of the body hangs below it behind the text. */
   .portrait-wrap { grid-area: 1 / 1 / 2 / -1; align-self: end; justify-self: center; position: relative; z-index: 2; width: min(100%, calc(var(--wm) * 2.37)); aspect-ratio: 1161 / 470; margin-bottom: calc(var(--wm) * .6); animation: lift .8s cubic-bezier(.16,1,.3,1) backwards; }
   /* Solid body behind the text, fading out toward the section bottom (the section clips the rest). */
@@ -143,12 +143,12 @@ const jsonld = {
   .tile { position: relative; margin-top: var(--drop); transform: rotate(var(--tilt)); transition: transform .35s cubic-bezier(.2,.8,.2,1); animation: deal .7s cubic-bezier(.16,1,.3,1) backwards; animation-delay: calc(var(--i) * 90ms + 120ms); }
   @keyframes deal { from { transform: translateY(72px) rotate(calc(var(--tilt) + 5deg)); } }
   .face { aspect-ratio: 9 / 16; color: #000; border-radius: 18px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(16px, 1.6vw, 24px); box-sizing: border-box; }
-  .sticker { position: absolute; top: -14px; right: -10px; z-index: 3; background: #FF0088; color: #000; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; padding: 8px 12px; border-radius: 999px; transform: rotate(var(--st)); transition: transform .3s cubic-bezier(.34,1.56,.64,1); animation: pop .45s cubic-bezier(.34,1.56,.64,1) backwards; animation-delay: calc(var(--i) * 90ms + 560ms); }
+  .sticker { position: absolute; top: -14px; right: -10px; z-index: 3; background: #EB0352; color: #000; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; padding: 8px 12px; border-radius: 999px; transform: rotate(var(--st)); transition: transform .3s cubic-bezier(.34,1.56,.64,1); animation: pop .45s cubic-bezier(.34,1.56,.64,1) backwards; animation-delay: calc(var(--i) * 90ms + 560ms); }
   @keyframes pop { from { opacity: 0; transform: rotate(var(--st)) scale(.5); } }
   .tick { animation: tick 28s linear infinite; }
   @keyframes tick { to { transform: translateX(-50%); } }
   .ticker[data-paused] .tick { animation-play-state: paused; }
-  .tick-btn { flex: 0 0 auto; width: 56px; height: 56px; border: none; border-right: 2px solid #DDB866; background: #000; color: #DDB866; cursor: pointer; display: grid; place-items: center; }
+  .tick-btn { flex: 0 0 auto; width: 56px; height: 56px; border: none; border-right: 2px solid #D9D9D9; background: #000; color: #D9D9D9; cursor: pointer; display: grid; place-items: center; }
   .tick-btn .i-play, .ticker[data-paused] .tick-btn .i-pause { display: none; }
   .ticker[data-paused] .tick-btn .i-play { display: block; }
   @media (hover: hover) and (pointer: fine) {
