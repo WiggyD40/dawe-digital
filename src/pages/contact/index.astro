@@ -23,13 +23,13 @@ const jsonld = {
   <section class="wrap" aria-labelledby="contact-h" style="padding-top: clamp(48px, 7vw, 104px); padding-bottom: clamp(64px, 8vw, 112px); display: grid; gap: 28px">
     <p class="kicker">Contact</p>
     <h1 id="contact-h" class="display" style="margin: 0; font-size: clamp(56px, 8vw, 96px); line-height: 0.88">Start a <span style="color: #EB0352">project</span></h1>
-    <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D7D7D5; max-width: 52ch">What does your business do, what do you need, and when? If you're still figuring that out, tell me where you're stuck. {site.replyTime}</p>
+    <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D9D9D9; max-width: 52ch">What does your business do, what do you need, and when? If you're still figuring that out, tell me where you're stuck. {site.replyTime}</p>
 
     {!site.formUrl && site.email && (
       <div style="display: grid; gap: 28px; max-width: 640px">
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
           <a class="pill pill-pink" href={`mailto:${site.email}`} style="padding: 14px 28px; min-height: 52px; font-size: 17px">Email me</a>
-          <span style="font-size: 17px; color: #D7D7D5">or copy <strong style="color: #FDFCF9; user-select: all">{site.email}</strong></span>
+          <span style="font-size: 17px; color: #D9D9D9">or copy <strong style="color: #FAF9F6; user-select: all">{site.email}</strong></span>
         </div>
         <div>
           <h2 class="kicker" style="margin: 0 0 14px">What to include</h2>
@@ -71,7 +71,7 @@ const jsonld = {
     )}
 
     {site.formUrl && site.email && (
-      <p style="margin: 0; font-size: 17px; color: #D7D7D5">Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p style="margin: 0; font-size: 17px; color: #D9D9D9">Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
     )}
   </section>
 </Base>
@@ -79,13 +79,13 @@ const jsonld = {
 <style>
   .form { display: grid; gap: 20px; max-width: 640px; }
   .form label { display: grid; gap: 8px; font-weight: 700; font-size: 15px; }
-  .opt { font-weight: 400; color: #D7D7D5; }
-  .include { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; font-size: 17px; line-height: 1.5; color: #D7D7D5; }
-  .form input, .form textarea, .form select { font: 400 17px/1.5 'Inter', system-ui, sans-serif; color: #FDFCF9; background: #000; border: 2px solid #D7D7D5; border-radius: 12px; padding: 12px 14px; min-height: 48px; box-sizing: border-box; width: 100%; }
+  .opt { font-weight: 400; color: #D9D9D9; }
+  .include { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; font-size: 17px; line-height: 1.5; color: #D9D9D9; }
+  .form input, .form textarea, .form select { font: 400 17px/1.5 'Inter', system-ui, sans-serif; color: #FAF9F6; background: #000; border: 2px solid #D9D9D9; border-radius: 12px; padding: 12px 14px; min-height: 48px; box-sizing: border-box; width: 100%; }
   .form textarea { resize: vertical; }
-  .form input:focus-visible, .form textarea:focus-visible, .form select:focus-visible { outline: 3px solid #DDB866; outline-offset: 3px; border-color: #FDFCF9; }
+  .form input:focus-visible, .form textarea:focus-visible, .form select:focus-visible { outline: 3px solid #D9D9D9; outline-offset: 3px; border-color: #FAF9F6; }
   .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-  .note { margin: 0; font-size: 15px; line-height: 1.5; color: #D7D7D5; }
+  .note { margin: 0; font-size: 15px; line-height: 1.5; color: #D9D9D9; }
   .form button { justify-self: start; border: 0; cursor: pointer; font: 800 17px/1 'Inter', system-ui, sans-serif; padding: 16px 32px; min-height: 52px; }
   .form button:disabled { opacity: .6; cursor: progress; }
   .status { margin: 0; min-height: 1.5em; font-size: 16px; color: #EB0352; font-weight: 700; }
