@@ -17,7 +17,7 @@ Astro static site, deployed to GitHub Pages by `.github/workflows/deploy.yml` on
 - Content-Security-Policy: `security.csp` in `astro.config.mjs`. Astro writes the `<meta>` tag and hashes its own scripts and styles. CSP doesn't run under `npm run dev`; check it with `npm run build && npm run preview`. Known limit: browsers without `style-src-attr` (Safari before 15.4, Firefox before 108) block the inline `style=""` layout. Accepted for launch.
 - Light ribbon: `src/scripts/ribbon.js`. Add `?motion=on` to a URL to preview it with Reduce Motion on.
 - Sitemap: `public/sitemap.xml` is hand-written. Add every new indexable page to it.
-- `public/og.png` (1200×630) and the favicons were made from the logo with `sharp`, which strips metadata. Strip EXIF from any new photo before committing: the repo is public.
+- Header logo: `src/assets/logo.png`, the silver/pink camera logo trimmed to its edges from `brand/logos/Dawe Digital Camera Logo Silver-5.webp` (transparent; `brand/` is gitignored). `public/og.png` (1200×630, logo 780px wide on black) is made from the same file; the favicons are the older lens mark. All were made with `sharp`, which strips metadata. Strip EXIF from any new photo before committing: the repo is public.
 
 ## Contact form (Google Apps Script)
 The form posts to a web app bound to a Google Sheet in Wyatt's **personal** Google account. Source: `apps-script/Code.gs`.
