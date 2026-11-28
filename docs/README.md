@@ -12,7 +12,8 @@ Astro static site, deployed to GitHub Pages by `.github/workflows/deploy.yml` on
 `/work/` doesn't exist yet. Add it (and a nav link and a sitemap entry) once there's real, approved media.
 
 ## Where things live
-- Facts used on several pages (email, Instagram, form URL, services, steps, article meta): `src/data/site.ts`. An empty value hides that element everywhere.
+- Facts used on several pages (email, Instagram, form URL, Utah County cities, services, steps, article meta): `src/data/site.ts`. An empty value hides that element everywhere. `cities` feeds the services FAQ and the homepage JSON-LD `areaServed` (Utah County plus each city). The real service area is set in the Google Business Profile; keep the two lists the same.
+- Homepage JSON-LD `logo` is `/apple-touch-icon.png` (180px square); `image` stays `/og.png`.
 - Header, footer, meta tags, OG image, JSON-LD slot: `src/layouts/Base.astro`.
 - Content-Security-Policy: `security.csp` in `astro.config.mjs`. Astro writes the `<meta>` tag and hashes its own scripts and styles. CSP doesn't run under `npm run dev`; check it with `npm run build && npm run preview`. Known limit: browsers without `style-src-attr` (Safari before 15.4, Firefox before 108) block the inline `style=""` layout. Accepted for launch.
 - Light ribbon: `src/scripts/ribbon.js`. Add `?motion=on` to a URL to preview it with Reduce Motion on.

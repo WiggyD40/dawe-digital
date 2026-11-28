@@ -2,10 +2,10 @@
 import Base from '../../layouts/Base.astro';
 import ServiceCards from '../../components/ServiceCards.astro';
 import Steps from '../../components/Steps.astro';
-import { site } from '../../data/site';
+import { site, cities } from '../../data/site';
 
 const faq = [
-  { q: 'Where do you work?', a: "I'm based in Pleasant Grove and work with small businesses in Utah." },
+  { q: 'Where do you work?', a: `I'm based in Pleasant Grove and work with small businesses across Utah County, including ${new Intl.ListFormat('en').format(cities.filter((c) => c !== 'Pleasant Grove'))}.` },
   { q: 'Do I need to be on camera?', a: "No. Some Reels work best with you or your team talking. Others use footage of your space, products, and process. We'll plan what fits." },
   { q: 'What does it cost?', a: "It depends on what you need. Tell me the project, your timing, and any budget, and I'll reply with a proposed scope." },
   { q: 'Do you post the content, or do I?', a: 'If you hire me for social, I post it. For everything else, you get finished files to use however you want.' },
@@ -23,15 +23,15 @@ const jsonld = {
 const h2 = 'margin: 0 0 40px; font-size: clamp(44px, 6vw, 88px); line-height: 0.9';
 ---
 <Base
-  title="Video, Photo & Social Media Services in Utah · Dawe Digital"
-  description="Short-form video and Reels, photography, social content management, and website setup for small businesses in Utah, from Dawe Digital in Pleasant Grove."
+  title="Video, Photo & Social Media Services in Utah County · Dawe Digital"
+  description="Short-form video and Reels, photography, social content management, and website setup for small businesses in Utah County, from Dawe Digital in Pleasant Grove."
   current="services"
   jsonld={jsonld}
 >
   <section class="wrap" aria-labelledby="svc-h" style="padding-top: clamp(48px, 7vw, 104px)">
     <p class="kicker" style="margin-bottom: 18px">Services</p>
     <h1 id="svc-h" class="display" style="margin: 0 0 20px; font-size: clamp(56px, 8vw, 96px); line-height: 0.88">What I make</h1>
-    <p style="margin: 0 0 48px; font-size: 19px; line-height: 1.55; color: #D9D9D9; max-width: 52ch">Four things, done by one person from plan to post. Pick one or combine them.</p>
+    <p style="margin: 0 0 48px; font-size: 19px; line-height: 1.55; color: #D9D9D9; max-width: 52ch">Four things for small businesses in Utah County, done by one person from plan to post. Pick one or combine them.</p>
     <h2 class="sr-only">The services</h2>
     <ServiceCards detail />
   </section>
