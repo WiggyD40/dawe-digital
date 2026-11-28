@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 import Steps from '../components/Steps.astro';
-import { site, ids } from '../data/site';
+import { site, ids, cities } from '../data/site';
 import portrait from '../assets/wyatt-cutout.png';
 
 // Text tiles stand in the hero until real reels and photos are ready. Nothing here pretends to be media.
@@ -23,11 +23,14 @@ const jsonld = {
       '@id': ids.business,
       name: site.name,
       url: `${site.url}/`,
-      logo: `${site.url}/og.png`,
+      logo: `${site.url}/apple-touch-icon.png`,
       image: `${site.url}/og.png`,
-      description: 'Short-form video, photography, social content, and websites for small businesses in Utah.',
+      description: 'Short-form video, photography, social content, and websites for small businesses in Utah County.',
       address: { '@type': 'PostalAddress', addressLocality: 'Pleasant Grove', addressRegion: 'UT', addressCountry: 'US' },
-      areaServed: { '@type': 'State', name: 'Utah' },
+      areaServed: [
+        { '@type': 'AdministrativeArea', name: 'Utah County, UT' },
+        ...cities.map((c) => ({ '@type': 'City', name: `${c}, UT` })),
+      ],
       founder: { '@id': ids.person },
       ...(site.instagram && { sameAs: [`https://www.instagram.com/${site.instagram}/`] }),
     },
@@ -43,8 +46,8 @@ const jsonld = {
 };
 ---
 <Base
-  title="Dawe Digital · Reels, photos & social content in Utah"
-  description="Dawe Digital is a one-person content studio in Pleasant Grove, Utah. Short-form video, photography, social content, and websites for small businesses in Utah."
+  title="Dawe Digital · Reels, photos & social content in Utah County"
+  description="Dawe Digital is a one-person content studio in Pleasant Grove, Utah. Short-form video, photography, social content, and websites for Utah County businesses."
   current="home"
   jsonld={jsonld}
   footerRibbon
@@ -58,7 +61,7 @@ const jsonld = {
         <span class="display" style="display: block; line-height: 0.88; letter-spacing: -0.005em">Short videos. Real photos. <span style="color: #EB0352">Posted on time.</span></span>
       </h1>
       <div class="hero-copy" style="display: grid; gap: 28px">
-        <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D9D9D9">I'm Wyatt, a one-person content studio in Pleasant Grove. I plan it, film it, edit it, and hand you posts that are ready to go.</p>
+        <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #D9D9D9">I'm Wyatt, a one-person content studio in Pleasant Grove, working with small businesses across Utah County. I plan it, film it, edit it, and hand you posts that are ready to go.</p>
         <div style="display: flex; flex-wrap: wrap; gap: 12px">
           <a class="pill pill-pink" href="/contact/" style="padding: 14px 24px; min-height: 52px">Start a project</a>
           <a class="pill pill-line" href="#how" style="padding: 14px 24px; min-height: 52px">See how it works</a>

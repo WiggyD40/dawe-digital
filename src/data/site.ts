@@ -11,6 +11,9 @@ export const site = {
   replyTime: "I'll get back to you within 2 business days.",
 };
 
+/** Utah County cities named in copy and in the homepage JSON-LD areaServed. */
+export const cities = ['Pleasant Grove', 'American Fork', 'Lehi', 'Lindon', 'Orem', 'Provo'];
+
 export const ids = {
   business: `${site.url}/#business`,
   person: `${site.url}/#wyatt`,
